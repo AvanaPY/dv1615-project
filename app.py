@@ -5,7 +5,6 @@ import os
 import requests
 app = Flask(__name__)
 
-
 API_MANAGEMENT_URL = os.getenv("API_MANAGEMENT_URL")
 LAGER_API_URL = os.getenv("LAGER_API_URL")
 
@@ -61,33 +60,38 @@ def filter_items_by_words(stock, translations):
     return filtered
 
 def get_translations(from_lan, to_lan, items):
-    url = f'{API_MANAGEMENT_URL}/translate?api-version=3.0&from={from_lan}&to={to_lan}'
-    headers = { COGNITIVE_API_HEADER_KEY: COGNITIVE_API_HEADER_VAL }
-    body = [
-        {"text": item} for item in items
-    ]
-    response = requests.post(url, headers=headers, json=body).json()
-    
-    translations = []
-    for item in response:
-        for translation in item['translations']:
-            translations.append(translation['text'])
-    return translations
+    try:
+        url = f'{API_MANAGEMENT_URL}/translate?api-version=3.0&from={from_lan}&to={to_lan}'
+        headers = { COGNITIVE_API_HEADER_KEY: COGNITIVE_API_HEADER_VAL }
+        body = [
+            {"text": item} for item in items
+        ]
+        response = requests.post(url, headers=headers, json=body).json()
+        
+        translations = []
+        for item in response:
+            for translation in item['translations']:
+                translations.append(translation['text'])
+        return translations
+    except:
+        return None
 
 def get_cognitive_response(image_url):
-    url = f'{API_MANAGEMENT_URL}/vision/v2.0/analyze?visualFeatures=Tags'
-    headers = { COGNITIVE_API_HEADER_KEY: COGNITIVE_API_HEADER_VAL }
-    body = { 'url': image_url }
-    response = requests.post(url, headers=headers, json=body).json()
+    try:
+        url = f'{API_MANAGEMENT_URL}/vision/v2.0/analyze?visualFeatures=Tags'
+        headers = { COGNITIVE_API_HEADER_KEY: COGNITIVE_API_HEADER_VAL }
+        body = { 'url': image_url }
+        response = requests.post(url, headers=headers, json=body).json()
 
-    if 'code' in response or 'statusCode' in response:
-        return None, response['message']
+        if 'code' in response or 'statusCode' in response:
+            return None, response['message']
 
-    items = [
-        item['name'] for item in response['tags'] if item['confidence'] > CONFIDENCE_THRESHOLD
-    ]
-    return items, ""
-
+        items = [
+            item['name'] for item in response['tags'] if item['confidence'] > CONFIDENCE_THRESHOLD
+        ]
+        return items, ""
+    except:
+        return None, "API Management layer URL is invalid"
 def get_relevant_products(image_url):
     NON_RELEVANT_SEARCH_TERMS_FAULT = "Could not find relevant search terms"
 
