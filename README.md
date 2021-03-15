@@ -23,9 +23,9 @@ After having installed the libraries create a file in the root directory called 
 ### .env Example 
 
 ```makefile
-COGNITIVE_API_HEADER_VAL = beicz80nvnvp5zs2tijmmt0gvugqnkfz
+COGNITIVE_API_HEADER_KEY = beicz80nvnvp5zs2tijmmt0gvugqnkfz
 API_MANAGEMENT_URL       = https://dv1615-apimanagement-lab.azure-api.net
 LAGER_API_URl            = https://www.lager-api-by-docker-container.net/
 ```
 NOTE:
-The `COGNITIVE_API_HEADER_VAL` key above is randomly generated and the real one should be acquried from the project's page on Canvas.
+The `COGNITIVE_API_HEADER_KEY` key above is randomly generated and the real one should be acquried from the project's page on Canvas.
