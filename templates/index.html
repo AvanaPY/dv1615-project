@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bildsök</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="header-text text-center">Bildsök i Lagret</h1>
+    </div>
+    <div class="container">
+        <form class="form" action="" method="GET">
+            <label>URL till bild: </label>
+            <input class="url-input" placeholder="URL" type="text" name="image-url" />
+            <input class="btn" type="submit" value="Sök" />
+        </form>
+        <div class="search-results">
+            {% if image_url %}
+                <p class="text-center">Sökte på: <a href="{{ image_url }}">{{ image_url }}</a></p>
+                <div class="products">
+                {% if items %}
+                    {% for item in items %}
+                        <div class="product">
+                            <p class="product-name text-center"><strong>{{ item.get('name') }}</strong></p>
+                            <p  class="product-price text-right">{{ item.get('price') }} {{ currency }}</p>
+                            <p class="product-stock text-right">Lager: {{ item.get('stock') }}</p>
+                            <p class="product-description">{{ item.get('description') }}</p>
+                        </div>
+                    {% endfor %}
+                {% elif status %}
+                        <p class="text-center">Ett fel uppstod: {{ status }}</p>
+                {% else %}
+                    <p class="text-center">Inga relevanta produkter funna.</p>
+                </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    background-color: lightgray;
+}
+
+p,
+a {
+    font-size: 18px;
+}
+
+a {
+    color: rgb(126, 126, 241);
+}
+
+a:visited {
+    color: rgb(126, 126, 241);
+}
+
+.header {
+    font-size: 18px;
+    display: block;
+    background-color: gray;
+}
+
+.container {
+    height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    height: 3rem;
+}
+
+.form > * {
+    margin-left: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.header-text {
+    padding: 0.75em 0;
+}
+
+.search-results {
+    padding: 1rem 0;
+}
+.url-input {
+    width: 300px;
+    height: 100%;
+    padding: 0 2em;
+}
+
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: inherit;
+    line-height: 1;
+    background: none;
+    border: 2px solid #386397;
+    outline: 2px solid #386397;
+    outline-offset: -2px;
+    transition: outline-offset 50ms ease;
+    padding: 1em 2em;
+}
+
+.btn:hover,
+.btn:active {
+    outline-offset: 2px;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.products > * {
+    flex-basis: 30%;
+}
+
+.product {
+    max-width: 400px;
+    padding: 2em 2em;
+    background-color: white;
+    box-shadow: 4px 4px 4px darkgray;
+    margin: 0.5em 0.5em;
+}
+
+.product-name {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.product-price {
+    margin-top: 1em;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: grey;
+}
+
+.product-stock {
+    margin-bottom: 1em;
+}
+
+.product-description {
+    color: rgb(44, 73, 73);
+
+    border: 2px solid lightgray;
+    padding: 0.75em 1.5em;
+}
