@@ -16,7 +16,7 @@ pip install -r requirements.txt
 to get download all the required libraries.
 
 After having installed the libraries create a file in the root directory called `.env` and add the variables:
-* COGNITIVE_API_HEADER_VAL: Your API key for the API Management layer
+* COGNITIVE_API_HEADER_KEY: Your API key for the API Management layer
 * API_MANAGEMENT_URL: The URL to the API Management Layer for the Azure Cognitive Services
 * LAGER_API_URl: The URL to the lager-api part of the assignment
 
